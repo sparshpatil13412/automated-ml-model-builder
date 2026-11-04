@@ -1,0 +1,162 @@
+
+{% extends "base.html" %}
+
+{% block title %}Dataset | AutoML Model Builder{% endblock %}
+{% block breadcrumb %}Dataset{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Dataset</h1>
+    <p>Upload, inspect and configure your machine learning dataset.</p>
+</div>
+
+<!-- Upload Section -->
+<div class="card" id="dataset">
+
+    <div class="card-header">
+        <div>
+            <h3 class="card-title">Upload Dataset</h3>
+            <p class="card-description">
+                Import a CSV file to begin your ML workflow.
+            </p>
+        </div>
+        <span class="status status-success">CSV Supported</span>
+    </div>
+
+    <form action="#" method="POST" enctype="multipart/form-data">
+
+        <label for="csv-file" class="upload-area" id="upload-area">
+            <div class="upload-icon">⇧</div>
+            <h3>Drop your CSV file here</h3>
+            <p>or click to browse your files</p>
+            <p style="margin-top: 12px;">
+                Maximum file size: 50 MB
+            </p>
+
+            <input
+                type="file"
+                name="dataset"
+                id="csv-file"
+                accept=".csv"
+                hidden
+            >
+        </label>
+
+        <div id="file-info" hidden style="margin-top: 18px;">
+            <div class="card">
+                <strong id="file-name">dataset.csv</strong>
+                <p id="file-size" class="card-description"></p>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button type="submit" class="btn btn-primary">
+                Upload Dataset
+            </button>
+        </div>
+
+    </form>
+</div>
+
+
+<!-- Dataset Preview -->
+<div class="card" style="margin-top: 24px;">
+
+    <div class="card-header">
+        <div>
+            <h3 class="card-title">Dataset Preview</h3>
+            <p class="card-description">
+                Preview the first few rows of your uploaded dataset.
+            </p>
+        </div>
+        <span class="status status-warning">Sample Data</span>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Age</th>
+                    <th>Income</th>
+                    <th>Experience</th>
+                    <th>Purchased</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>25</td>
+                    <td>35000</td>
+                    <td>2</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>32</td>
+                    <td>52000</td>
+                    <td>7</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>41</td>
+                    <td>68000</td>
+                    <td>12</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>28</td>
+                    <td>41000</td>
+                    <td>4</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Target Selection -->
+<div class="card" style="margin-top: 24px;">
+
+    <div class="card-header">
+        <div>
+            <h3 class="card-title">Target Variable</h3>
+            <p class="card-description">
+                Select the column your model should predict.
+            </p>
+        </div>
+    </div>
+
+    <form action="#" method="POST">
+
+        <div class="form-group">
+            <label class="form-label" for="target-column">
+                Select Target Column
+            </label>
+
+            <select
+                class="form-select"
+                id="target-column"
+                name="target_column"
+            >
+                <option value="">Choose a column</option>
+                <option value="Age">Age</option>
+                <option value="Income">Income</option>
+                <option value="Experience">Experience</option>
+                <option value="Purchased">Purchased</option>
+            </select>
+        </div>
+
+        <p class="card-description">
+            Selected target:
+            <strong id="selected-target">No target selected</strong>
+        </p>
+
+        <button type="submit" class="btn btn-primary">
+            Confirm Target
+        </button>
+
+    </form>
+</div>
+
+{% endblock %}

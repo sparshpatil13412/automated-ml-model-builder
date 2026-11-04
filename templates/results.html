@@ -1,0 +1,225 @@
+
+{% extends "base.html" %}
+
+{% block title %}Results | AutoML Model Builder{% endblock %}
+{% block breadcrumb %}Results{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Model Results</h1>
+    <p>Evaluate, compare and analyze your trained machine learning models.</p>
+</div>
+
+
+<!-- Best Model -->
+<div class="card">
+
+    <div class="card-header">
+        <div>
+            <h3 class="card-title">Best Performing Model</h3>
+            <p class="card-description">
+                Selected using validation F1 score.
+            </p>
+        </div>
+
+        <span class="status status-success">Best Model</span>
+    </div>
+
+    <h2 style="font-size: 25px; margin-bottom: 8px;">
+        Random Forest
+    </h2>
+
+    <p class="card-description">
+        Classification · Validation F1 Score: 0.925
+    </p>
+
+    <div style="margin-top: 20px;">
+        <button class="btn btn-primary">
+            Download Model
+        </button>
+        <button class="btn btn-secondary">
+            View Details
+        </button>
+    </div>
+
+</div>
+
+
+<!-- Performance Metrics -->
+<div style="
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+">
+
+    <div class="card">
+        <p class="card-description">Accuracy</p>
+        <h2 style="font-size: 25px; margin-top: 10px;">94.0%</h2>
+    </div>
+
+    <div class="card">
+        <p class="card-description">Precision</p>
+        <h2 style="font-size: 25px; margin-top: 10px;">93.0%</h2>
+    </div>
+
+    <div class="card">
+        <p class="card-description">Recall</p>
+        <h2 style="font-size: 25px; margin-top: 10px;">92.0%</h2>
+    </div>
+
+    <div class="card">
+        <p class="card-description">F1 Score</p>
+        <h2 style="font-size: 25px; margin-top: 10px;">92.5%</h2>
+    </div>
+
+</div>
+
+
+<!-- Model Comparison -->
+<div class="card" style="margin-top: 24px;">
+
+    <div class="card-header">
+        <div>
+            <h3 class="card-title">Model Comparison</h3>
+            <p class="card-description">
+                Performance comparison across trained algorithms.
+            </p>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Algorithm</th>
+                    <th>Accuracy</th>
+                    <th>Precision</th>
+                    <th>Recall</th>
+                    <th>F1 Score</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>Logistic Regression</td>
+                    <td>89.0%</td>
+                    <td>87.0%</td>
+                    <td>88.0%</td>
+                    <td>87.5%</td>
+                    <td>Evaluated</td>
+                </tr>
+
+                <tr>
+                    <td>Decision Tree</td>
+                    <td>88.0%</td>
+                    <td>86.0%</td>
+                    <td>85.0%</td>
+                    <td>85.5%</td>
+                    <td>Evaluated</td>
+                </tr>
+
+                <tr>
+                    <td>Random Forest</td>
+                    <td>94.0%</td>
+                    <td>93.0%</td>
+                    <td>92.0%</td>
+                    <td>92.5%</td>
+                    <td>
+                        <span class="status status-success">Best</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>SVM</td>
+                    <td>91.0%</td>
+                    <td>90.0%</td>
+                    <td>89.0%</td>
+                    <td>89.5%</td>
+                    <td>Evaluated</td>
+                </tr>
+
+                <tr>
+                    <td>Gradient Boosting</td>
+                    <td>93.0%</td>
+                    <td>92.0%</td>
+                    <td>91.0%</td>
+                    <td>91.5%</td>
+                    <td>Evaluated</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+<!-- Visualization Placeholders -->
+<div class="card" style="margin-top: 24px;">
+
+    <h3 class="card-title">Model Evaluation</h3>
+
+    <p class="card-description">
+        Visual analysis of the selected model.
+    </p>
+
+    <div style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    ">
+
+        <div>
+            <h4 style="margin-bottom: 12px;">Confusion Matrix</h4>
+            <div id="confusion-matrix">
+                Visualization will appear here.
+            </div>
+        </div>
+
+        <div>
+            <h4 style="margin-bottom: 12px;">Feature Importance</h4>
+            <div id="feature-importance">
+                Visualization will appear here.
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- New Predictions -->
+<div class="card" style="margin-top: 24px;" id="predictions">
+
+    <div class="card-header">
+        <div>
+            <h3 class="card-title">Generate Predictions</h3>
+            <p class="card-description">
+                Use the trained model to predict new observations.
+            </p>
+        </div>
+    </div>
+
+    <p class="card-description">
+        Prediction input fields will be generated dynamically
+        from the selected dataset's feature columns.
+    </p>
+
+    <button class="btn btn-primary" style="margin-top: 18px;">
+        Open Prediction Interface
+    </button>
+
+</div>
+
+<p class="card-description" style="margin-top: 20px;">
+    Demonstration values only. Actual results must be generated
+    by the model evaluation pipeline.
+</p>
+
+{% endblock %}

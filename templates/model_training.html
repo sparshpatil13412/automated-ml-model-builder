@@ -1,0 +1,165 @@
+
+{% extends "base.html" %}
+
+{% block title %}Model Training | AutoML Model Builder{% endblock %}
+{% block breadcrumb %}Model Training{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Model Training</h1>
+    <p>Configure and train machine learning algorithms on your dataset.</p>
+</div>
+
+
+<!-- Dataset Information -->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Training Configuration</h3>
+        <span class="status status-success">Dataset Loaded</span>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Dataset</td>
+                    <td>customer_data.csv</td>
+                </tr>
+                <tr>
+                    <td>Target Variable</td>
+                    <td>Purchased</td>
+                </tr>
+                <tr>
+                    <td>Problem Type</td>
+                    <td>Classification</td>
+                </tr>
+                <tr>
+                    <td>Training Split</td>
+                    <td>80%</td>
+                </tr>
+                <tr>
+                    <td>Testing Split</td>
+                    <td>20%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Algorithm Selection -->
+<div class="card" style="margin-top: 24px;">
+
+    <div class="card-header">
+        <div>
+            <h3 class="card-title">Algorithm Selection</h3>
+            <p class="card-description">
+                Select the algorithms to include in the experiment.
+            </p>
+        </div>
+    </div>
+
+    <form action="#" method="POST" id="training-form">
+
+        <div class="form-group">
+            <label class="form-label">Classification Algorithms</label>
+
+            <div style="display: grid; gap: 14px;">
+
+                <label>
+                    <input type="checkbox" name="algorithms"
+                           value="logistic_regression" checked>
+                    Logistic Regression
+                </label>
+
+                <label>
+                    <input type="checkbox" name="algorithms"
+                           value="decision_tree" checked>
+                    Decision Tree
+                </label>
+
+                <label>
+                    <input type="checkbox" name="algorithms"
+                           value="random_forest" checked>
+                    Random Forest
+                </label>
+
+                <label>
+                    <input type="checkbox" name="algorithms"
+                           value="svm" checked>
+                    Support Vector Machine
+                </label>
+
+                <label>
+                    <input type="checkbox" name="algorithms"
+                           value="gradient_boosting" checked>
+                    Gradient Boosting
+                </label>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="form-label" for="test-size">
+                Test Dataset Percentage
+            </label>
+
+            <select class="form-select" name="test_size" id="test-size">
+                <option value="0.2" selected>20%</option>
+                <option value="0.25">25%</option>
+                <option value="0.3">30%</option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label class="form-label" for="random-state">
+                Random State
+            </label>
+
+            <input
+                class="form-input"
+                type="number"
+                name="random_state"
+                id="random-state"
+                value="42"
+            >
+        </div>
+
+
+        <button
+            type="submit"
+            class="btn btn-primary"
+            id="train-button"
+        >
+            Start Model Training
+        </button>
+
+    </form>
+</div>
+
+
+<!-- Training Progress -->
+<div class="card" id="training-progress"
+     style="margin-top: 24px;" hidden>
+
+    <h3 class="card-title">Training Progress</h3>
+
+    <p class="card-description" id="progress-text">
+        Waiting for training updates...
+    </p>
+
+    <div style="margin-top: 18px;">
+        <progress
+            id="progress-bar"
+            value="0"
+            max="100"
+            style="width: 100%;"
+        ></progress>
+    </div>
+
+</div>
+
+{% endblock %}
